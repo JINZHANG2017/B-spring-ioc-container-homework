@@ -16,7 +16,7 @@ public class GreetingController {
 
     @GetMapping("/greet")
     public String greet() {
-        return greetingService.sayHi();
+        return new GreetingService().sayHi();
     }
 
 }
