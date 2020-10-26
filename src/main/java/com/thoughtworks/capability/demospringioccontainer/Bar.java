@@ -2,14 +2,17 @@ package com.thoughtworks.capability.demospringioccontainer;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class Bar {
 
     private Foo foo;
 
-    public Bar(Foo foo) {
-        this.foo = foo;
-    }
+//    public Bar(Foo foo) {
+//        this.foo = foo;
+//    }
+
 
     public void hi() {
         System.out.println("Hi, " + foo.name());
@@ -17,5 +20,9 @@ public class Bar {
 
     public String name() {
         return "Bar";
+    }
+
+    public void setFoo(Foo foo) {
+        this.foo=foo;
     }
 }
