@@ -4,6 +4,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.WebApplicationContext;
 
 @RestController
 public class GreetingController {
@@ -11,16 +12,13 @@ public class GreetingController {
     private GreetingService greetingService;
 
     @Autowired
-    private BeanFactory beanFactory;
+    private WebApplicationContext webApplicationContext;
 
-    @Autowired
-    public GreetingController() {
-
-    }
 
     @GetMapping("/greet")
     public String greet() {
-        this.greetingService = (GreetingService) SpringContextUtil.getBean(GreetingService.class);
+        this.greetingService = webApplicationContext.getBean(GreetingService.class);
+        //(GreetingService) SpringContextUtil.getBean(GreetingService.class);
         return greetingService.sayHi();
     }
 
